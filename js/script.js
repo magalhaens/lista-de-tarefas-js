@@ -4,24 +4,37 @@ const input = document.querySelector('#input');
 const button = document.querySelector('#button');
 const list = document.querySelector('#tasklist');
 const indicator = document.querySelector('#indicator');
-const counter = [];
 
-let taskCounter = 0;
+let counter = 0;
 
 button.addEventListener('click', () => {
     let task = input.value.trim()
 
     if(task !== ''){
-        let item = document.createElement('p')
+        let item = document.createElement('div')
+        let taskName = document.createElement('p')
+        let taskBtn = document.createElement('button')
+
+
         list.appendChild(item)
-        item.textContent = task
 
-        counter.push(task)
+        item.appendChild(taskName)
+        item.appendChild(taskBtn)
+        taskName.textContent = task
+        taskBtn.innerText = '🗑️'
 
-        indicator.textContent = counter.length;
+        counter++;
+
+        indicator.textContent = counter;
 
         input.value = ''
         input.focus()
+        
+        taskBtn.addEventListener('click', () => {
+            item.remove();
+            counter--;
+            indicator.textContent = counter;
+        })
     } else {
         window.alert('Espaço em branco, insira uma tarefa')
     }
