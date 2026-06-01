@@ -54,6 +54,21 @@ lista-de-tarefas/
     └── script.js
 ```
 
+## Histórico de versões
+
+### Versão 1.0
+- Criação da estrutura inicial do projeto
+- Campo para digitar o nome da tarefa
+- Botão para criar tarefas
+- Contador de tarefas
+
+### Versão 1.1
+- Implementado botão para apagar tarefas
+- Contador agora diminui ao remover uma tarefa
+- Melhorada a estrutura do HTML
+- Adicionado CSS com responsividade
+
 ## Imagem do projeto
 
-<img width="1920" height="581" alt="image" src="https://github.com/user-attachments/assets/fa42c7fb-639c-408e-921a-cadd54c623dc" />
+<img width="1920" height="655" alt="image" src="https://github.com/user-attachments/assets/be8b9e6f-2adb-4f5f-b6aa-ce2eb09ed23c" />
+
