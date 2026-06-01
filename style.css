@@ -1,118 +1,227 @@
+/* =========================
+   RESET BÁSICO
+========================= */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
+}
+
+html {
+    font-size: 16px;
 }
 
 body {
     min-height: 100vh;
-    background: #f1f5f9;
-    color: #1e293b;
+    font-family: Arial, Helvetica, sans-serif;
+    background: linear-gradient(135deg, #f4f7fb, #dfe9f3);
+    color: #222;
+    line-height: 1.5;
 }
 
+/* =========================
+   VARIÁVEIS
+========================= */
+
+:root {
+    --primary-color: #2563eb;
+    --primary-hover: #1d4ed8;
+
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+
+    --background-card: #ffffff;
+    --text-color: #222;
+    --muted-color: #666;
+
+    --border-color: #d1d5db;
+    --shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+
+    --radius: 12px;
+    --transition: 0.2s ease;
+}
+
+/* =========================
+   HEADER
+========================= */
+
 header {
-    background: #2563eb;
-    color: white;
-    padding: 25px 15px;
+    padding: 2rem 1rem;
     text-align: center;
 }
 
 header h1 {
-    font-size: 32px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    color: var(--primary-color);
 }
+
+/* =========================
+   CONTAINER PRINCIPAL
+========================= */
 
 main {
-    width: 90%;
-    max-width: 600px;
-    margin: 40px auto;
-    background: white;
-    padding: 25px;
-    border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    width: min(90%, 600px);
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: var(--background-card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
 }
 
+/* =========================
+   CONTADOR
+========================= */
+
 main > p {
-    font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    color: var(--muted-color);
 }
 
 #indicator {
-    color: #2563eb;
+    display: inline-block;
+    min-width: 28px;
+    padding: 0.2rem 0.5rem;
+    margin-left: 0.3rem;
+    text-align: center;
+    color: #ffffff;
+    background-color: var(--primary-color);
+    border-radius: 999px;
     font-weight: bold;
 }
 
+/* =========================
+   PAINEL DE CRIAÇÃO
+========================= */
+
 .panel {
     display: flex;
-    gap: 10px;
-    margin-bottom: 25px;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
 }
 
 #input {
     flex: 1;
-    padding: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
-    font-size: 16px;
+    padding: 0.85rem 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+    font-size: 1rem;
     outline: none;
+    transition: border-color var(--transition), box-shadow var(--transition);
+}
+
+#input::placeholder {
+    color: #999;
 }
 
 #input:focus {
-    border-color: #2563eb;
-    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.15);
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.2);
 }
 
 #button {
-    padding: 12px 20px;
+    padding: 0.85rem 1.2rem;
     border: none;
-    border-radius: 8px;
-    background: #2563eb;
-    color: white;
-    font-size: 16px;
+    border-radius: var(--radius);
+    background-color: var(--primary-color);
+    color: #ffffff;
+    font-size: 1rem;
+    font-weight: bold;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background-color var(--transition), transform var(--transition);
 }
 
 #button:hover {
-    background: #1d4ed8;
+    background-color: var(--primary-hover);
+    transform: translateY(-1px);
 }
 
 #button:active {
-    transform: scale(0.97);
+    transform: translateY(0);
 }
+
+#button:focus-visible {
+    outline: 3px solid rgba(37, 99, 235, 0.35);
+    outline-offset: 3px;
+}
+
+/* =========================
+   LISTA DE TAREFAS
+========================= */
 
 #tasklist {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 0.75rem;
 }
 
-/* Estiliza os <p> criados pelo JavaScript */
+/* Estiliza as divs criadas pelo JavaScript */
+#tasklist > div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+
+    padding: 0.9rem 1rem;
+    background-color: #f9fafb;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius);
+
+    transition: transform var(--transition), box-shadow var(--transition), border-color var(--transition);
+}
+
+#tasklist > div:hover {
+    transform: translateY(-2px);
+    border-color: #c7d2fe;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.06);
+}
+
 #tasklist p {
-    background: #f8fafc;
-    border: 1px solid #e2e8f0;
-    padding: 14px;
-    border-left: 5px solid #2563eb;
-    border-radius: 8px;
-    font-size: 16px;
-    color: #334155;
+    flex: 1;
+    color: var(--text-color);
+    font-size: 1rem;
     word-break: break-word;
 }
 
-/* Dá um efeito ao passar o mouse nas tarefas */
-#tasklist p:hover {
-    background: #eff6ff;
+/* Botão de excluir criado pelo JavaScript */
+#tasklist button {
+    width: 42px;
+    height: 42px;
+
+    border: none;
+    border-radius: 50%;
+    background-color: #fee2e2;
+    color: var(--danger-color);
+
+    font-size: 1.1rem;
+    cursor: pointer;
+
+    transition: background-color var(--transition), transform var(--transition);
 }
 
-/* Responsivo para celular */
-@media (max-width: 500px) {
-    header h1 {
-        font-size: 24px;
-    }
+#tasklist button:hover {
+    background-color: #fecaca;
+    transform: scale(1.08);
+}
 
+#tasklist button:active {
+    transform: scale(0.95);
+}
+
+#tasklist button:focus-visible {
+    outline: 3px solid rgba(239, 68, 68, 0.35);
+    outline-offset: 3px;
+}
+
+/* =========================
+   RESPONSIVIDADE
+========================= */
+
+@media (max-width: 480px) {
     main {
-        margin-top: 25px;
-        padding: 20px;
+        width: 92%;
+        padding: 1.5rem;
     }
 
     .panel {
@@ -121,5 +230,13 @@ main > p {
 
     #button {
         width: 100%;
+    }
+
+    #tasklist > div {
+        align-items: flex-start;
+    }
+
+    #tasklist button {
+        flex-shrink: 0;
     }
 }
